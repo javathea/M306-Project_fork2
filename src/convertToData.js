@@ -12,6 +12,6 @@ const convertToData = (XML) => {
     const formattedDateTime = dateTime.toISOString().replace("Z", "");
     data.push({ timestamp: formattedDateTime, value: volume });
   });
-  
+  console.log(data);
   return data;
 };
