@@ -11,15 +11,21 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <ul>
-        <li><img src="images/logo.jpg" alt="eb"></li>
-        <li>Energieagentur</li>
-        <li>über uns</li>
-        <li>Dokumentation</li>
-    </ul>
-    <h1>Energiediagramme</h1>
-    <div id="graph"></div>
-    <button onclick="readXML()">XML lesen</button>
-    <div id="graph"></div>
+    <div class="grid-container">
+        <div class="item1">
+            <ul>
+                <li class="logo"><img src="images/logo.jpg" alt="eb"></li>
+                <li class="logo">Energieagentur</li>
+                <li class="menu">über uns</li>
+                <li class="menu">Dokumentation</li>
+            </ul>
+        </div>
+        <div class="item2">
+        <h1>Energiediagramme</h1>
+        </div>
+        <div id="graph" class="item3"></div>
+        <button onclick="readXML()">XML lesen</button>
+        <div id="graph" class="item4"></div>
+    </div>
 </body>
 </html>

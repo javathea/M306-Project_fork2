@@ -2,11 +2,15 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    align-items: ;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
 }
 
 li {
-    display: inline;
+    display: block;
+    padding: 8px;
 }
 
 body {
@@ -15,4 +19,34 @@ body {
 
 img {
     height: 50px;
+}
+
+.menu {
+    float: right;
+}
+
+.logo {
+    float: left;
+}
+
+.item1 {
+    grid-area: header;
+}
+
+.item2 {
+    grid-area: title;
+}
+
+.item3 {
+    grid-area: main;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+        'header'
+        'title'
+        'main';
+    gap: 10px;
+    padding: 30px;
 }
