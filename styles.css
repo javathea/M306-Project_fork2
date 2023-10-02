@@ -57,11 +57,10 @@ img {
 
 .tab {
     overflow: hidden;
-    background-color: #d6c5e3;
   }
 
 .tab button {
-    background-color: inherit;
+    background-color: #d6c5e3;
     float: left;
     border: none;
     outline: none;
@@ -74,3 +73,6 @@ img {
     background-color: white;
   }
 
+.tab button :hover {
+    background-color: beige;
+}
