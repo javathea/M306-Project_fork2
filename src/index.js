@@ -1,4 +1,4 @@
-var XML;
+let XML;
 
 const readXML = () => {
   fetch("sample.xml")
