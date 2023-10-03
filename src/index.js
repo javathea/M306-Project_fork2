@@ -22,6 +22,15 @@ const readXML = () => {
     //});
 };
 
+function showLoader() {
+  let x = document.getElementById("loader");
+  if (x.style.display == "flex") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "flex";
+  }
+}
+
 /*
 fs = require("fs");
 let XML;
