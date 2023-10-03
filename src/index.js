@@ -7,6 +7,7 @@ const readXML = () => {
       //graphify(res, "sdat");
     })
     .then((data) => {
+      console.log(data);
       graphify(data, "sdat");
     })
     .catch((err) => {
