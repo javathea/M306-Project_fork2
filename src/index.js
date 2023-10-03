@@ -1,17 +1,24 @@
 let XML;
 
 const readXML = () => {
-  fetch("../sample.xml")
+  fetch("http://localhost:3001/xml")
     .then((res) => {
-      return res.text();
+      return res.json();
+      //graphify(res, "sdat");
     })
-    .then((String) => {
-      XML = new DOMParser().parseFromString(String, "text/xml");
-      const additiveData = convertToAdditiveData(XML);
-      const data = convertToData(XML);
+    .then((data) => {
       graphify(data, "sdat");
-      graphify(additiveData, "additiveSdat");
+    })
+    .catch((err) => {
+      console.log(err);
     });
+    //.then((String) => {
+      /*XML = new DOMParser().parseFromString(String, "text/xml");
+      const additiveData = convertToAdditiveData(XML);
+      const data = convertToData(XML);*/
+    //  graphify(data, "sdat");
+     // graphify(additiveData, "additiveSdat");
+    //});
 };
 
 /*
