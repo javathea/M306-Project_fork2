@@ -53,10 +53,16 @@
             <button class="tabutton" onclick="openGraph(event, 'verbrauch')">Verbrauch</button>
         </div>
         <div id="zählerstände" class="tabcontent">
-            <h1>Graph</h1>
+            <h1>Zählerstanddiagramm</h1>
         </div>
         <div id="verbrauch" class="tabcontent">
-            <h1>graph2</h1>
+            <h1>Verbrauchsdiagramm</h1>
+            <div class="loading">
+                <svg height="48px" width="64px">
+                    <polyline id="back" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
+                  <polyline id="front" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
+                </svg>
+              </div>
             <div id="graphsdat"></div>
             <button class="btn btn-light" onclick="readXML()">XML lesen</button>
         </div>
