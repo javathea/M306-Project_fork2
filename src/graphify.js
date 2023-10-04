@@ -37,5 +37,5 @@ const graphify = (data, graphID) => {
   const plotData = [trace];
 
   // Plotly-Graph erstellen
-  Plotly.newPlot(graphID + "graph", plotData, layout);
+  Plotly.newPlot("graph"+graphID, plotData, layout);
 };
