@@ -14,13 +14,6 @@ const readXML = () => {
     .catch((err) => {
       console.log(err);
     });
-    //.then((String) => {
-      /*XML = new DOMParser().parseFromString(String, "text/xml");
-      const additiveData = convertToAdditiveData(XML);
-      const data = convertToData(XML);*/
-    //  graphify(data, "sdat");
-     // graphify(additiveData, "additiveSdat");
-    //});
 };
 
 function showLoader() {
@@ -45,26 +38,69 @@ function hideLoader() {
 fs = require("fs");
 let XML;
 
-const readXML = () => {
-  fs.readdir("./SDAT-Files", (err, files) => {
-  
-    if(err) throw err;
 
-    files.forEach(file => {
-      fetch(file)
-      .then((res) => {
-      return res.text();
-    })
-    .then((String) => {
-      XML = new DOMParser().parseFromString(String, "text/xml");
-      convertToCSV(XML);
-      const additiveData = convertToAdditiveData(XML);
-      const data = convertToData(XML);
-      graphify(data, "sdat");
-      graphify(additiveData, "additiveSdat");
-    })
-    })
+const renderAdditive = () => {
+  const antwort = [
+    {
+        timestamp: '2019-03-13T23:00:00.000',
+        valueSell: "1",
+        valueBuy: "0.4"
+    },
+    {
+        timestamp: '2019-03-14T23:00:00.000',
+        valueSell: "3",
+        valueBuy: "2"
+    },
+]
+
+const xData = antwort.map((entry) => new Date(entry.timestamp));
+let yDataSell = antwort.map((entry) => parseFloat(entry.valueSell));
+let yDataBuy = antwort.map((entry) => parseFloat(entry.valueBuy));
+
+
+
+yDataSell = yDataSell.reduce((acc, curr, index) => {
+  if (index === 0) {
+    return [curr];
   }
-)};
+  acc.push(curr + acc[index - 1]);
+  return acc;
+}, []);
 
-*/
+yDataBuy = yDataBuy.reduce((acc, curr, index) => {
+  if (index === 0) {
+    return [curr];
+  }
+  acc.push(curr + acc[index - 1]);
+  return acc;
+}, []);
+
+
+  const sellData = 
+    {
+      x: xData,
+      y: yDataSell,
+      type: "scatter",
+    };
+  const buyData = 
+    {
+      x: xData,
+      y: yDataBuy,
+      type: "scatter",
+    };
+  var data = [sellData, buyData]
+  const layout = {
+    title: "Dynamisch aktualisierte Daten",
+    xaxis: {
+      type: "date", // X-Achse als Zeitachse
+      title: "Zeit",
+      rangeslider: {}, // Range-Slider unter dem Graphen
+    },
+    yaxis: {
+      title: "Volumes",
+    },
+  };
+
+  Plotly.newPlot("graphzählerstand", data, layout);
+
+};
