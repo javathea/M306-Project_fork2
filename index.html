@@ -11,6 +11,7 @@
     <script src="/src/convertToAdditiveData.js"></script>
     <script src="/src/convertToData.js"></script>
     <script src="/src/graphify.js"></script>
+    <script src="/src/graphifyESL.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
     function openGraph(evt, graphName) {
@@ -54,17 +55,19 @@
         </div>
         <div id="zählerstände" class="tabcontent">
             <h1>Zählerstanddiagramm</h1>
+            <div id="graphzählerstand"></div>
+            <button class="btn btn-light" onclick="renderAdditive()">Zählerstand anzeigen</button>
         </div>
         <div id="verbrauch" class="tabcontent">
             <h1>Verbrauchsdiagramm</h1>
             <button class="btn btn-light" id="getXML" onclick="readXML(); showLoader()">XML lesen</button>
-            <div id="graphsdat"></div>
             <div class="loading" id="loader">
                 <svg height="48px" width="64px">
                     <polyline id="back" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
                   <polyline id="front" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
                 </svg>
             </div>
+            <div id="graphsdat"></div>
         </div>
     </div>
 </body>
