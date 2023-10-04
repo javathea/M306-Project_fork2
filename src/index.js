@@ -41,23 +41,40 @@ const renderAdditive = () => {
 ]
 
 const xData = antwort.map((entry) => new Date(entry.timestamp));
-const yDataSell = antwort.map((entry) => entry.valueSell);
-const yDataBuy = antwort.map((entry) => entry.valueBuy);
+let yDataSell = antwort.map((entry) => parseFloat(entry.valueSell));
+let yDataBuy = antwort.map((entry) => parseFloat(entry.valueBuy));
+
+
+
+yDataSell = yDataSell.reduce((acc, curr, index) => {
+  if (index === 0) {
+    return [curr];
+  }
+  acc.push(curr + acc[index - 1]);
+  return acc;
+}, []);
+
+yDataBuy = yDataBuy.reduce((acc, curr, index) => {
+  if (index === 0) {
+    return [curr];
+  }
+  acc.push(curr + acc[index - 1]);
+  return acc;
+}, []);
+
 
   const sellData = 
     {
       x: xData,
       y: yDataSell,
       type: "scatter",
-    }
-  ;
+    };
   const buyData = 
     {
       x: xData,
       y: yDataBuy,
       type: "scatter",
-    }
-  ;
+    };
   var data = [sellData, buyData]
   const layout = {
     title: "Dynamisch aktualisierte Daten",
@@ -72,7 +89,5 @@ const yDataBuy = antwort.map((entry) => entry.valueBuy);
   };
 
   Plotly.newPlot("graphzählerstand", data, layout);
-
-
 
 };
