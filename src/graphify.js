@@ -1,5 +1,14 @@
 // ChatGPT
 const graphify = (data, graphID) => {
+  if (!data) {
+    data = [
+      {
+        x: [],
+        y: [],
+        type: "scatter",
+      },
+    ];
+  }
   
   // X- und Y-Achsendaten extrahieren
   const xData = data.map((entry) => new Date(entry.timestamp));
@@ -28,5 +37,5 @@ const graphify = (data, graphID) => {
   const plotData = [trace];
 
   // Plotly-Graph erstellen
-  Plotly.newPlot("graph" + graphID, plotData, layout);
+  Plotly.newPlot(graphID + "graph", plotData, layout);
 };
