@@ -8,13 +8,21 @@ const readXML = () => {
     })
     .then((data) => {
       console.log(data);
-      graphify(data, "verbrauch");
+      graphify(data, "sdat");
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
+function showLoader() {
+  let x = document.getElementById("loader");
+  if (x.style.display == "flex") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "flex";
+  }
+}
 const renderAdditive = () => {
   const initialData = [
     {
@@ -23,7 +31,6 @@ const renderAdditive = () => {
       type: "scatter",
     },
   ];
-
   const layout = {
     title: "Dynamisch aktualisierte Daten",
     xaxis: {
@@ -36,7 +43,7 @@ const renderAdditive = () => {
     },
   };
 
-  Plotly.newPlot("zählerständegraph", initialData, layout);
+  Plotly.newPlot("graphzählerstand", initialData, layout);
   // graphify(null, "verbrauch");
   const source = new EventSource("http://localhost:3001/additiveIncome");
 
@@ -62,22 +69,24 @@ const renderAdditive = () => {
   };
 
   function updateGraph(newData) {
-    const dataToUpdate = [{
-      x: newData.map(point => point.timestamp),
-      y: newData.map(point => point.value),
-      type: 'scatter'
-    }];
-    console.log("updating graph...", newData)
-    const ini =  JSON.parse(JSON.stringify(newData));
-    console.log('ini', ini)
+    const dataToUpdate = [
+      {
+        x: newData.map((point) => point.timestamp),
+        y: newData.map((point) => point.value),
+        type: "scatter",
+      },
+    ];
+    console.log("updating graph...", newData);
+    const ini = JSON.parse(JSON.stringify(newData));
+    console.log("ini", ini);
     const x = [];
-const y = [];
-    const test = ini.forEach(item => {
+    const y = [];
+    const test = ini.forEach((item) => {
       x.push(item.timestamp);
       y.push(item.value);
     });
     const transformedArray = [{ x, y }];
-    console.log("updated graph...", transformedArray)
-    Plotly.react("zählerständegraph", transformedArray, layout);
-  }  
+    console.log("updated graph...", transformedArray);
+    Plotly.react("graphzählerstand", transformedArray, layout);
+  }
 };
