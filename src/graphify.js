@@ -24,12 +24,14 @@ const graphify = (data, graphID, produceData) => {
     x: xData,
     y: yData,
     type: "scatter", // Linien-Diagramm
+    name: "Verbrauch",
   };
 
   const traceProduce = {
     x: xDataProduce,
     y: yDataProduce,
     type: "scatter", // Linien-Diagramm
+    name: "Produktion",
   };
 
   // Daten-Array für Plotly erstellen
