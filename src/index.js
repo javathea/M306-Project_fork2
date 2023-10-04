@@ -9,6 +9,7 @@ const readXML = () => {
     .then((data) => {
       console.log(data);
       graphify(data, "sdat");
+      hideLoader();
     })
     .catch((err) => {
       console.log(err);
@@ -23,6 +24,16 @@ function showLoader() {
     x.style.display = "flex";
   }
 }
+
+function hideLoader() {
+  let x = document.getElementById("loader");
+  if (x.style.display == "none") {
+    x.style.display = "flex";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 
 const renderAdditive = () => {
   fetch("http://localhost:3001/esl").then((res) => {
