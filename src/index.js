@@ -23,14 +23,42 @@ function showLoader() {
     x.style.display = "flex";
   }
 }
+
+
+
 const renderAdditive = () => {
-  const initialData = [
+  const antwort = [
     {
-      x: [],
-      y: [],
-      type: "scatter",
+        timestamp: '2019-03-13T23:00:00.000',
+        valueSell: "1",
+        valueBuy: "0.4"
     },
-  ];
+    {
+        timestamp: '2019-03-14T23:00:00.000',
+        valueSell: "3",
+        valueBuy: "2"
+    },
+]
+
+const xData = antwort.map((entry) => new Date(entry.timestamp));
+const yDataSell = antwort.map((entry) => entry.valueSell);
+const yDataBuy = antwort.map((entry) => entry.valueBuy);
+
+  const sellData = 
+    {
+      x: xData,
+      y: yDataSell,
+      type: "scatter",
+    }
+  ;
+  const buyData = 
+    {
+      x: xData,
+      y: yDataBuy,
+      type: "scatter",
+    }
+  ;
+  var data = [sellData, buyData]
   const layout = {
     title: "Dynamisch aktualisierte Daten",
     xaxis: {
@@ -43,50 +71,8 @@ const renderAdditive = () => {
     },
   };
 
-  Plotly.newPlot("graphzählerstand", initialData, layout);
-  // graphify(null, "verbrauch");
-  const source = new EventSource("http://localhost:3001/additiveIncome");
+  Plotly.newPlot("graphzählerstand", data, layout);
 
-  let daten = [];
 
-  source.onmessage = function (event) {
-    const neuesObjekt = JSON.parse(event.data);
-    console.log("retrieved Object", neuesObjekt);
-    daten.push(neuesObjekt);
-    console.log("pushing daten", daten);
 
-    // Rufen Sie hier Ihre Plotly-Update-Funktion auf
-    updateGraph(neuesObjekt);
-  };
-
-  source.onerror = function (event) {
-    source.close();
-    if (source.readyState === EventSource.CLOSED) {
-      console.log("Verbindung wurde geschlossen.");
-    } else {
-      console.log("Ein Fehler ist aufgetreten.", event);
-    }
-  };
-
-  function updateGraph(newData) {
-    const dataToUpdate = [
-      {
-        x: newData.map((point) => point.timestamp),
-        y: newData.map((point) => point.value),
-        type: "scatter",
-      },
-    ];
-    console.log("updating graph...", newData);
-    const ini = JSON.parse(JSON.stringify(newData));
-    console.log("ini", ini);
-    const x = [];
-    const y = [];
-    const test = ini.forEach((item) => {
-      x.push(item.timestamp);
-      y.push(item.value);
-    });
-    const transformedArray = [{ x, y }];
-    console.log("updated graph...", transformedArray);
-    Plotly.react("graphzählerstand", transformedArray, layout);
-  }
 };
