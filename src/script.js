@@ -4,7 +4,7 @@ function handleFileUpload(event) {
 
     for (const file of files) {
         // Check if the file extension is .sdat or .esl
-        const allowedExtensions = ['sdat', 'esl'];
+        const allowedExtensions = ['sdat', 'esl', 'xml'];
         const fileExtension = file.name.split('.').pop().toLowerCase();
 
         if (allowedExtensions.includes(fileExtension)) {
