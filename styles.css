@@ -1,5 +1,5 @@
 ul {
-    background-color: #d6c5e3;
+    background-color: white;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -24,37 +24,26 @@ div {
 }
 
 .menu {
-    float: right;
-    padding-top: 8px;
-    padding-right: 70px;
-}
-
-.logo {
     float: left;
     padding-top: 8px;
     padding-right: 15px;
 }
 
-.item1 {
+.title {
     grid-area: header;
-}
-
-.item2 {
-    grid-area: title;
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
-.item3 {
-    grid-area: main;
+.form {
+    grid-area: title;
 }
 
 .grid-container {
     display: grid;
     grid-template-areas: 
         'header'
-        'title'
-        'main';
+        'title';
     gap: 0px;
     padding: 30px;
 }
@@ -62,7 +51,8 @@ div {
 .tab {
     overflow: hidden;
     border-bottom: none;
-  }
+    grid-area: title;
+}
 
 .tab button {
     background-color: #d6c5e3;
@@ -72,22 +62,22 @@ div {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-  }
+}
 
 .tab button:hover {
     background-color: rgb(248, 229, 248);
-  }
+}
 
 .tab button.active {
     background-color: white;
-  }
+}
 
 .tabcontent {
     background-color: white;
     display: none;
     padding: 6px 12px;
     border-top: none;
-  }
+}
 
 
 .loading svg polyline {
@@ -95,12 +85,12 @@ div {
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
-  }
+}
   
 .loading svg polyline#back {
     fill: none;
     stroke: rgb(177, 176, 176);
-  }
+}
   
 .loading svg polyline#front {
     fill: none;
@@ -108,7 +98,7 @@ div {
     stroke-dasharray: 48, 144;
     stroke-dashoffset: 192;
     animation: dash_682 1.4s linear infinite;
-  }
+}
   
 @keyframes dash_682 {
     72.5% {
@@ -118,7 +108,7 @@ div {
     to {
       stroke-dashoffset: 0;
     }
-  }
+}
   
 .loading {
     display: flex;
@@ -129,8 +119,7 @@ div {
 }
 
 .dropzone {
-    grid-area: title;
-    padding-top: 50px;
+    grid-area: main;
     padding-bottom: 50px;
     background-color: gray;
     height: 300px;
@@ -138,4 +127,18 @@ div {
 
 .exportButton {
   align-self: right;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #6a11ad;
+    text-decoration: underline;
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding: 16px;
 }
