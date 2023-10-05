@@ -51,14 +51,14 @@ const graphify = (data, graphID) => {
     x: xData,
     y: yData,
     type: "scatter", // Linien-Diagramm
-    name: "Verbrauch",
+    name: "Produktion",
   };
 
   const traceProduce = {
     x: xData,
     y: yDataProduce,
     type: "scatter", // Linien-Diagramm
-    name: "Produktion",
+    name: "Verbrauch",
   };
 
   // Daten-Array für Plotly erstellen
