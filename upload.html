@@ -15,25 +15,19 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body style="background-color: #d6c5e3;">
+    <div class="nav">
+        <ul>
+            <li class="menu"><img src="/images/logo.jpg" alt="eb"></li>
+            <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64);">Home</a></li>
+            <li class="menu"><a href="/upload.html" style="color: rgb(66, 64, 64)">Upload</a></li>
+            <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Dokumentation</a></li>
+        </ul>
+    </div>
     <div class="grid-container">
-        <div class="nav">
-            <ul>
-                <li class="menu"><img src="/images/logo.jpg" alt="eb"></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Energieagentur</a></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64);">Home</a></li>
-                <li class="menu"><a href="/upload.html" style="color: rgb(66, 64, 64)">upload</a></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Dokumentation</a></li>
-            </ul>
-        </div>
         <div class="title">
             <h1>Upload</h1>
         </div>
-        <div class="grid-container">
-            <div class="item1">
-                <ul>
-                    <!-- ... (previous code) ... -->
-                </ul>
-            </div>
+        <div class="form">
             <form action="/upload" method="post" enctype="multipart/form-data">
                 <!-- Add input element for file selection -->
                 <input type="file" name="file" id="file-input" style="display:none;" multiple>
@@ -42,15 +36,18 @@
                 <label for="file-input" id="file-label">Click HERE to upload your files!</label>
                 
                 <!-- Add the dropzone div here -->
+
                 <div id="dropzone">
                     <h1></h1>
                 </div>
                 <button id="delete-files">Delete uploaded Files</button>
 
                 <script src="/src/script.js"></script>
-                
+                    
                 <!-- Add a submit button (optional, depending on your needs) -->
-                
+
+               <input type="submit" value="Upload" class="btn btn-light">
+
             </form>
         </div>
 </body>
