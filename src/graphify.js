@@ -1,11 +1,11 @@
-const graphify = (data, graphID, produceData) => {
+const graphify = (data, graphID) => {
   
   // X- und Y-Achsendaten extrahieren
   const xData = data.map((entry) => new Date(entry.timestamp));
-  const yData = data.map((entry) => entry.value);
+  const yData = data.map((entry) => entry.valueBezug);
 
-  const xDataProduce = produceData.map((entry) => new Date(entry.timestamp));
-  const yDataProduce = produceData.map((entry) => entry.value);
+  //const xDataProduce = data.map((entry) => new Date(entry.timestamp));
+  const yDataProduce = data.map((entry) => entry.valueEinspesung);
 
   // Layout-Einstellungen für den Graphen
   const layout = {
@@ -28,7 +28,7 @@ const graphify = (data, graphID, produceData) => {
   };
 
   const traceProduce = {
-    x: xDataProduce,
+    x: xData,
     y: yDataProduce,
     type: "scatter", // Linien-Diagramm
     name: "Produktion",
