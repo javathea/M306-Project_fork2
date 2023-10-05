@@ -7,11 +7,38 @@ const graphify = (data, graphID) => {
   //const xDataProduce = data.map((entry) => new Date(entry.timestamp));
   const yDataProduce = data.map((entry) => entry.valueEinspesung);
 
+  let selectorOptions = {
+    buttons: [{
+        step: 'month',
+        stepmode: 'backward',
+        count: 1,
+        label: '1m'
+    }, {
+        step: 'month',
+        stepmode: 'backward',
+        count: 6,
+        label: '6m'
+    }, {
+        step: 'year',
+        stepmode: 'todate',
+        count: 1,
+        label: 'YTD'
+    }, {
+        step: 'year',
+        stepmode: 'backward',
+        count: 1,
+        label: '1y'
+    }, {
+        step: 'all',
+    }],
+  };
+
   // Layout-Einstellungen für den Graphen
   const layout = {
     xaxis: {
       type: "date", // X-Achse als Zeitachse
       title: "Zeit",
+      rangeselector: selectorOptions,
       rangeslider: {}, // Range-Slider unter dem Graphen
     },
     yaxis: {
@@ -39,5 +66,5 @@ const graphify = (data, graphID) => {
   console.log(plotData);
 
   // Plotly-Graph erstellen
-  Plotly.newPlot("graph"+graphID, plotData, layout);
+  Plotly.newPlot("graph"+graphID, plotData, layout, {displayModeBar: false});
 };

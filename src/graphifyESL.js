@@ -3,6 +3,33 @@ function graphifyESL(antwort) {
   let yDataBezug = antwort.map((entry) => parseFloat(entry.valueBezug));
   let yDataEinspesung = antwort.map((entry) => parseFloat(entry.valueEinspesung));
 
+
+  let selectorButtons = {
+    buttons: [{
+        step: 'month',
+        stepmode: 'backward',
+        count: 1,
+        label: '1m'
+    }, {
+        step: 'month',
+        stepmode: 'backward',
+        count: 6,
+        label: '6m'
+    }, {
+        step: 'year',
+        stepmode: 'todate',
+        count: 1,
+        label: 'YTD'
+    }, {
+        step: 'year',
+        stepmode: 'backward',
+        count: 1,
+        label: '1y'
+    }, {
+        step: 'all',
+    }],
+  };
+
  
 
   const sellData = {
@@ -23,6 +50,7 @@ function graphifyESL(antwort) {
     xaxis: {
       type: "date",
       title: "Zeit",
+      rangeselector: selectorButtons,
       rangeslider: {}, // Range-Slider unter dem Graphen
     },
     yaxis: {
@@ -30,6 +58,6 @@ function graphifyESL(antwort) {
     },
   };
 
-  Plotly.newPlot("graphzählerstand", data, layout);
+  Plotly.newPlot("graphzählerstand", data, layout, {displayModeBar: false});
 }
 
