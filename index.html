@@ -37,16 +37,15 @@
     </script>
 </head>
 <body style="background-color: #d6c5e3;">
+    <div class="nav">
+        <ul>
+            <li class="menu"><img src="/images/logo.jpg" alt="eb"></li>
+            <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64);">Home</a></li>
+            <li class="menu"><a href="/upload.html" style="color: rgb(66, 64, 64)">Upload</a></li>
+            <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Dokumentation</a></li>
+        </ul>
+    </div>  
     <div class="grid-container">
-        <div class="nav">
-            <ul>
-                <li class="menu"><img src="/images/logo.jpg" alt="eb"></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Energieagentur</a></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64);">Home</a></li>
-                <li class="menu"><a href="/upload.html" style="color: rgb(66, 64, 64)">Upload</a></li>
-                <li class="menu"><a href="/index.html" style="color: rgb(66, 64, 64)">Dokumentation</a></li>
-            </ul>
-        </div>
         <div class="title">
         <h1>Energiediagramme</h1>
         </div>
@@ -56,13 +55,19 @@
         </div>
         <div id="zählerstände" class="tabcontent">
             <h1>Zählerstanddiagramm</h1>
+            <button class="btn btn-light" onclick="renderAdditive(); showLoaderz()">Zählerstand anzeigen</button>
+            <div class="loading" id="loaderz">
+                <svg height="48px" width="64px">
+                    <polyline id="back" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
+                  <polyline id="front" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
+                </svg>
+            </div>
             <div id="graphzählerstand"></div>
-            <button class="btn btn-light" onclick="renderAdditive()">Zählerstand anzeigen</button>
         </div>
         <div id="verbrauch" class="tabcontent">
             <h1>Verbrauchsdiagramm</h1>
-            <button class="btn btn-light" id="getXML" onclick="readXML(); showLoader()">XML lesen</button>
-            <div class="loading" id="loader">
+            <button class="btn btn-light" id="getXML" onclick="readXML(); showLoaderv()">XML lesen</button>
+            <div class="loading" id="loaderv">
                 <svg height="48px" width="64px">
                     <polyline id="back" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>
                   <polyline id="front" points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></polyline>

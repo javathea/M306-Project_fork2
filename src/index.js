@@ -9,15 +9,15 @@ const readXML = () => {
     .then((data) => {
       console.log(data);
       graphify(data, "sdat");
-      hideLoader();
+      hideLoaderv();
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-function showLoader() {
-  let x = document.getElementById("loader");
+function showLoaderz() {
+  let x = document.getElementById("loaderz");
   if (x.style.display == "flex") {
     x.style.display = "none";
   } else {
@@ -25,8 +25,26 @@ function showLoader() {
   }
 }
 
-function hideLoader() {
-  let x = document.getElementById("loader");
+function showLoaderv() {
+  let x = document.getElementById("loaderv");
+  if (x.style.display == "flex") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "flex";
+  }
+}
+
+function hideLoaderz() {
+  let x = document.getElementById("loaderz");
+  if (x.style.display == "none") {
+    x.style.display = "flex";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function hideLoaderv() {
+  let x = document.getElementById("loaderv");
   if (x.style.display == "none") {
     x.style.display = "flex";
   } else {
@@ -43,6 +61,7 @@ const renderAdditive = () => {
   }).then((antwort) => {
     console.log(antwort)
     graphifyESL(antwort);
+    hideLoaderz();
 
   })
   const antwort = [
