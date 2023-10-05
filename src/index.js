@@ -8,7 +8,7 @@ const readXML = () => {
     })
     .then((data) => {
       console.log(data);
-      graphify(data[0], "sdat", data[1]);
+      graphify(data, "sdat");
       hideLoader();
     })
     .catch((err) => {
