@@ -135,3 +135,7 @@ div {
     background-color: gray;
     height: 300px;
 }
+
+.exportButton {
+  align-self: right;
+}

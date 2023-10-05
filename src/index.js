@@ -16,6 +16,12 @@ const readXML = () => {
     });
 };
 
+function exportCSV(){
+  let graph = document.getElementById("graphsdat");
+  let csvData = "DateTime,VolumeVerbrauch,VolumeHerstellung\n";
+  console.log(graph.data);
+}
+
 function showLoader() {
   let x = document.getElementById("loader");
   if (x.style.display == "flex") {
