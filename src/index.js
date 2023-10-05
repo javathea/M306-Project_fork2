@@ -64,19 +64,8 @@ function downloadCSV(id, csvContent){
 function exportCSV(){
   try{
     const esl = document.getElementById("graphzählerstand");
-    //const esl = document.getElementById("graphzählerstand");
-    //let csvData = "DateTime,VolumeVerbrauch,VolumeHerstellung\n";
+
     console.log(esl.data);
-
-    /*if (esl != undefined) {
-      // todo 
-    } else if (sdat != undefined) {
-      const data = prepareCSV(sdat);
-    } else {
-      return null;  // Kein bekannter Diagrammtyp
-    }*/
-
-    // Hier die Logik, um die Daten aus dem aktuellen Diagramm zu extrahieren
     
     // CSV-Format erstellen
     let csvContent = "timestamp,value\n";
@@ -92,11 +81,23 @@ function exportCSV(){
     
   }
   catch(err){
-    console.log(err);
-  }
-
-  
+    showError("Der Export kann nur mit einem dargestellten Zählerstand-Graphen durchgeführt werden.");
+  }  
 }
+
+
+function showError(errorMessage) {
+  const errorElement = document.getElementById('error');
+  errorElement.innerText = errorMessage;
+  errorElement.classList.remove('hidden-error');
+
+  // Verberge das Element nach 3 Sekunden
+  setTimeout(() => {
+    errorElement.classList.add('hidden-error');
+    errorElement.innerText = '';  // Zurücksetzen des Texts
+  }, 3000);
+}
+
 
 function showLoaderz() {
   let x = document.getElementById("loaderz");
