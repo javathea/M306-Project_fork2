@@ -25,6 +25,29 @@
                 <li class="menu">Dokumentation</li>
             </ul>
         </div>
-        <div id="dropzone"><h1>helä</h1></div>
+        <div class="grid-container">
+            <div class="item1">
+                <ul>
+                    <!-- ... (previous code) ... -->
+                </ul>
+            </div>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <!-- Add input element for file selection -->
+                <input type="file" name="file" id="file-input" style="display:none;" multiple>
+                
+                <!-- Add a label and button to trigger file selection -->
+                <label for="file-input" id="file-label">Choose a file</label>
+                
+                <!-- Add the dropzone div here -->
+                <div id="dropzone">
+                    <h1>helä</h1>
+                </div>
+                <script src="/src/script.js"></script>
+                
+                <!-- Add a submit button (optional, depending on your needs) -->
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+        
 </body>
 </html>
