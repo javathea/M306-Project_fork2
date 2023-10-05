@@ -1,7 +1,7 @@
 let XML;
 
 const readXML = () => {
-  fetch("http://localhost:3001/xml")
+  fetch("http://localhost:5000/xml")
     .then((res) => {
       return res.json();
       //graphify(res, "sdat");
@@ -16,10 +16,86 @@ const readXML = () => {
     });
 };
 
+function loopCSV(arrData, id, csvContent){
+  arrData.forEach(row => {
+    let dateObject = new Date(row.timestamp);
+    // Unix-Timestamp erhalten (in Millisekunden)
+    const unixTimestampMilliseconds = dateObject.getTime();
+
+    // Unix-Timestamp in Sekunden umwandeln (durch 1000 teilen)
+    const unixTimestampSeconds = Math.floor(unixTimestampMilliseconds / 1000);
+    if(id == "742"){
+      csvContent += `${unixTimestampSeconds},${row.valueBezug}\n`;
+    }else if(id == "735"){
+      csvContent += `${unixTimestampSeconds},${row.valueEinspesung}\n`;
+    }
+  });
+  return csvContent;
+}
+
+function prepareCSV(graph, id){
+  const data = graph.data[0].x.map((timestamp, index) => {
+    if (id == "742"){
+      return{
+        timestamp: timestamp,
+        valueBezug: graph.data[0].y[index],
+      }
+    }else if(id == "735"){
+      return{
+        timestamp: timestamp,
+        valueEinspesung: graph.data[1].y[index],
+      }
+    }
+  });
+  return data;
+}
+
+function downloadCSV(id, csvContent){
+  // CSV-Datei zum Download anbieten
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `Sensor_${id}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 function exportCSV(){
-  let graph = document.getElementById("graphsdat");
-  let csvData = "DateTime,VolumeVerbrauch,VolumeHerstellung\n";
-  console.log(graph.data);
+  try{
+    const esl = document.getElementById("graphzählerstand");
+    //const esl = document.getElementById("graphzählerstand");
+    //let csvData = "DateTime,VolumeVerbrauch,VolumeHerstellung\n";
+    console.log(esl.data);
+
+    /*if (esl != undefined) {
+      // todo 
+    } else if (sdat != undefined) {
+      const data = prepareCSV(sdat);
+    } else {
+      return null;  // Kein bekannter Diagrammtyp
+    }*/
+
+    // Hier die Logik, um die Daten aus dem aktuellen Diagramm zu extrahieren
+    
+    // CSV-Format erstellen
+    let csvContent = "timestamp,value\n";
+
+    let data742 = prepareCSV(esl, "742");
+    console.log(data742);
+    let csv742 = loopCSV(data742, "742", csvContent);
+    downloadCSV("742", csv742);
+    
+    let data735 = prepareCSV(esl, "735");
+    let csv735 = loopCSV(data735, "735", csvContent);
+    downloadCSV("735", csv735);
+    
+  }
+  catch(err){
+    console.log(err);
+  }
+
+  
 }
 
 function showLoaderz() {
@@ -60,7 +136,7 @@ function hideLoaderv() {
 
 
 const renderAdditive = () => {
-  fetch("http://localhost:3001/esl").then((res) => {
+  fetch("http://localhost:5000/esl").then((res) => {
     return res.text();
   }).then((data) => {
     return JSON.parse(data);

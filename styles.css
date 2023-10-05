@@ -127,7 +127,17 @@ div {
 
 .exportButton {
   align-self: right;
+  border-radius: 10px;
+  background-color: #5c2283 !important;
+  color: white;
+  padding-left: 20px;
+  margin-left: 60px;
 }
+
+.exportButton:hover {
+  background-color: #89709c !important;
+}
+
 a:link {
     text-decoration: none;
 }

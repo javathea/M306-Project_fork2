@@ -44,6 +44,7 @@ const graphify = (data, graphID) => {
     yaxis: {
       title: "Volumes",
     },
+    colorway: ["blue", "orange"],
   };
 
   // Trace für die Daten erstellen
@@ -62,7 +63,7 @@ const graphify = (data, graphID) => {
   };
 
   // Daten-Array für Plotly erstellen
-  const plotData = [trace, traceProduce];
+  const plotData = [traceProduce, trace];
   console.log(plotData);
 
   // Plotly-Graph erstellen
