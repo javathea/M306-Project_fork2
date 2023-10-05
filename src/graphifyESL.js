@@ -1,21 +1,21 @@
 function graphifyESL(antwort) {
   const xData = antwort.map((entry) => new Date(entry.timestamp));
-  let yDataSell = antwort.map((entry) => parseFloat(entry.valueSell));
-  let yDataBuy = antwort.map((entry) => parseFloat(entry.valueBuy));
+  let yDataBezug = antwort.map((entry) => parseFloat(entry.valueBezug));
+  let yDataEinspesung = antwort.map((entry) => parseFloat(entry.valueEinspesung));
 
  
 
   const sellData = {
     x: xData,
-    y: yDataSell,
+    y: yDataBezug,
     type: "scatter",
-    name: "Verkauf von Strom",
+    name: "Bezug von Strom",
   };
   const buyData = {
     x: xData,
-    y: yDataBuy,
+    y: yDataEinspesung,
     type: "scatter",
-    name: "Einkauf von Strom",
+    name: "Einspesung von Strom",
   };
   var data = [sellData, buyData];
   const layout = {
