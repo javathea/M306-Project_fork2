@@ -1,7 +1,7 @@
 let XML;
 
 const readXML = () => {
-  fetch("http://localhost:5000/xml")
+  fetch("http://localhost:6969/xml")
     .then((res) => {
       return res.json();
       //graphify(res, "sdat");
@@ -137,7 +137,7 @@ function hideLoaderv() {
 
 
 const renderAdditive = () => {
-  fetch("http://localhost:5000/esl").then((res) => {
+  fetch("http://localhost:6969/esl").then((res) => {
     return res.text();
   }).then((data) => {
     return JSON.parse(data);
@@ -147,18 +147,4 @@ const renderAdditive = () => {
     hideLoaderz();
 
   })
-  const antwort = [
-    {
-      timestamp: "2019-03-13T23:00:00.000",
-      valueSell: "1",
-      valueBuy: "0.4",
-    },
-    {
-      timestamp: "2019-03-14T23:00:00.000",
-      valueSell: "3",
-      valueBuy: "2",
-    },
-  ];
-
-  console.log(antwort)
 };
