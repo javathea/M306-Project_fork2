@@ -28,6 +28,9 @@ function handleFileUpload(event) {
         .then(response => response.json())
         .then(data => {
             console.log('Server response:', data);
+            if (data.message === 'Files uploaded successfully!') {
+                alert('Files uploaded successfully!');
+            }
         })
         .catch(error => console.error('Error uploading files:', error));
     } else {
