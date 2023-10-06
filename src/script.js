@@ -37,15 +37,22 @@ function handleFileUpload(event) {
 }
 
 document.getElementById('delete-files').addEventListener('click', () => {
-    fetch('http://localhost:3001/deleteFiles', {
-      method: 'POST',
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Server response:', data);
-    })
-    .catch(error => console.error('Error deleting files:', error));
+    const confirmation = confirm('Are you sure you want to delete all uploaded files?');
+
+    if (confirmation) {
+        deleteUploadedFiles();
+    }
   });
+
+  function deleteUploadedFiles() {
+    fetch('http://localhost:3001/deleteFiles', {
+        method: 'POST',
+    })
+    .then(() => {
+        console.log('Delete request sent successfully');
+    })
+    .catch(error => console.error('Error sending delete request:', error));
+}
 
 
 
