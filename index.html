@@ -12,6 +12,7 @@
     <script src="/src/convertToData.js"></script>
     <script src="/src/graphify.js"></script>
     <script src="/src/graphifyESL.js"></script>
+    <script src="/src/convertToJSON.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
     function openGraph(evt, graphName) {
@@ -53,6 +54,7 @@
             <button class="tabutton" onclick="openGraph(event, 'zählerstände')">Zählerstände</button>
             <button class="tabutton" onclick="openGraph(event, 'verbrauch')">Verbrauch</button>
             <button class="exportButton" onclick="exportCSV()">Export als CSV</button>
+            <button class="exportButton" onclick="exportJSON()">Export als JSON</button>
         </div>
         <div id="zählerstände" class="tabcontent">
             <h1>Zählerstanddiagramm</h1>
